@@ -1,5 +1,5 @@
 all:
-	g++ -Wall -O3 -std=c++11 -I. main.cpp kde.cpp -o kerndens 
+	g++ -g -Wall -O3 -std=c++11 -I. main.cpp kde.cpp -o kerndens
 
 clean:
 	rm kerndens *.png *.csv
