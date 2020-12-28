@@ -11,6 +11,7 @@
 
 using namespace std;
 
+std::string gPCDName = "";
 void usage(const char* prog){
 
    cout << "Read data from a csv file then perform kernel density estimation:\nUsage:\n" << prog << " [options] <csv_file>" << endl << endl;
@@ -75,12 +76,21 @@ int main(int argc, const char* argv[]){
         cout << endl;
     }    
 
-	ifstream file(argv[argc-1]);
-	while(getline(file, line)){
-		vector<double> data = split(line,',');
-		kde->add_data(data);
-	}
-	file.close();
+    pcl::PointCloud<pcl::PointXYZ>::Ptr pCloud(new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::io::loadPCDFile(gPCDName, *pCloud);
+
+    for (int i = 0; i < pCloud->size(); ++i)
+    {
+        vector<double> data({pCloud[i].x, pCloud[i].y});
+        kde->add_data(data);
+    }
+
+	// ifstream file(argv[argc-1]);
+	// while(getline(file, line)){
+		// vector<double> data = split(line,',');
+		// kde->add_data(data);
+	// }
+	// file.close();
 
 	if(kde->get_vars_count() == 1){
 
