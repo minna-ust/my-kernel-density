@@ -11,7 +11,7 @@
 
 using namespace std;
 
-std::string gPCDName = "";
+std::string gPCDName = "/home/matrix/tmp/workspace_test/dataset/segment_pedestrian.pcd";
 void usage(const char* prog){
 
    cout << "Read data from a csv file then perform kernel density estimation:\nUsage:\n" << prog << " [options] <csv_file>" << endl << endl;
